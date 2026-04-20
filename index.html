@@ -3,147 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios | Cultivating Infinite Worlds</title>
+    <title>Thana Studios | Cultivating the Infinite</title>
     <style>
         :root {
-            --primary-gold: #ffd700;
-            --accent-cyan: #00ffcc;
-            --bg-black: #050505;
-            --card-bg: #111111;
-            --text-gray: #b0b0b0;
+            --gold: #c5a059;
+            --gold-bright: #ffd700;
+            --cyan: #00ffcc;
+            --deep-bg: #030303;
+            --glass: rgba(20, 20, 20, 0.8);
+            --border: rgba(255, 255, 255, 0.1);
         }
 
+        * { box-sizing: border-box; }
+
         body {
-            background-color: var(--bg-black);
-            color: white;
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--deep-bg);
+            color: #f0f0f0;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
-            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 10%;
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-weight: 800;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold-bright);
+            font-size: 1.2rem;
         }
 
         /* Hero Section */
         header {
-            height: 60vh;
+            height: 80vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
-            border-bottom: 1px solid #222;
+            background: radial-gradient(circle at center, #111 0%, #030303 100%);
             text-align: center;
+            padding: 0 20px;
         }
 
         h1 {
-            font-size: 4rem;
-            letter-spacing: 8px;
+            font-size: clamp(2.5rem, 8vw, 5rem);
             margin: 0;
-            text-transform: uppercase;
-            background: linear-gradient(to right, var(--primary-gold), #fff);
+            letter-spacing: -2px;
+            font-weight: 900;
+            background: linear-gradient(to bottom, #fff 40%, var(--gold));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .tagline {
-            color: var(--accent-cyan);
-            letter-spacing: 4px;
+            font-size: 1.1rem;
+            color: var(--cyan);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-top: 15px;
             font-weight: 300;
-            margin-top: 10px;
-            text-transform: uppercase;
         }
 
-        /* Projects Section */
-        main {
-            padding: 50px 20px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .section-title {
+        /* Philosophy Section */
+        .intro {
+            max-width: 800px;
+            margin: -100px auto 100px;
+            padding: 60px 40px;
+            background: var(--glass);
+            border: 1px solid var(--border);
+            border-radius: 12px;
             text-align: center;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            margin-bottom: 40px;
-            color: #fff;
-            text-transform: uppercase;
+            backdrop-filter: blur(20px);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-        }
+        .intro h2 { color: var(--gold); text-transform: uppercase; letter-spacing: 2px; }
+        .intro p { font-size: 1.2rem; color: #bbb; }
 
-        /* Game Card */
+        /* Projects Grid */
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px 100px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 40px; }
+
         .card {
-            background: var(--card-bg);
-            border: 1px solid #222;
-            padding: 30px;
-            border-radius: 4px;
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-            text-decoration: none;
-            color: inherit;
-            display: block;
-        }
-
-        .card:hover {
-            border-color: var(--accent-cyan);
-            transform: translateY(-10px);
-            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
-        }
-
-        .card h3 {
-            margin: 0 0 15px 0;
-            font-size: 1.8rem;
-            color: var(--primary-gold);
-        }
-
-        .card p {
-            color: var(--text-gray);
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-
-        .status-badge {
-            display: inline-block;
-            font-size: 0.7rem;
-            padding: 4px 8px;
-            border: 1px solid var(--accent-cyan);
-            color: var(--accent-cyan);
-            text-transform: uppercase;
-            border-radius: 2px;
-        }
-
-        footer {
-            padding: 40px;
-            text-align: center;
-            color: #444;
-            font-size: 0.9rem;
-            border-top: 1px solid #111;
-        }
-
-        /* Decorative "Extreme" Lines */
-        .line {
-            width: 50px;
-            height: 2px;
-            background: var(--accent-cyan);
-            margin: 20px auto;
-        }
-    </style>
-</head>
-<body>
-
-    <header>
-        <h1>Thana Studios</h1>
-        <div class="line"></div>
-        <p class="tagline">Always Ascending</p>
-    </header>
-
-    <main>
-        <h2 class="section-title">Current Projects</h2>
-        
-        <div class="grid">
-            <a href="https://thana-studios.github.io/path-of-the-immortal/" class="card">
-                <div class="status-badge">Alpha Access</div>
-                <h3>Path of the Immortal</h3>
-                <p>A text based cultivation epic. Awaken in a new world, gather Qi
+            background: #
