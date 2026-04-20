@@ -1,37 +1,149 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Thana Studios | Cultivating Worlds</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thana Studios | Cultivating Infinite Worlds</title>
     <style>
-        body { background: #0a0a0a; color: white; font-family: sans-serif; text-align: center; }
-        .hero { padding: 100px 20px; background: linear-gradient(to bottom, #111, #000); }
-        h1 { font-size: 3rem; letter-spacing: 5px; color: #ffd700; }
-        .game-card {
-            border: 1px solid #333;
-            padding: 20px;
-            width: 300px;
-            margin: 20px auto;
-            transition: 0.3s;
+        :root {
+            --primary-gold: #ffd700;
+            --accent-cyan: #00ffcc;
+            --bg-black: #050505;
+            --card-bg: #111111;
+            --text-gray: #b0b0b0;
         }
-        .game-card:hover { border-color: #ffd700; background: #111; }
-        a { color: #00ffcc; text-decoration: none; font-weight: bold; }
+
+        body {
+            background-color: var(--bg-black);
+            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            overflow-x: hidden;
+        }
+
+        /* Hero Section */
+        header {
+            height: 60vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #050505 100%);
+            border-bottom: 1px solid #222;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            letter-spacing: 8px;
+            margin: 0;
+            text-transform: uppercase;
+            background: linear-gradient(to right, var(--primary-gold), #fff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .tagline {
+            color: var(--accent-cyan);
+            letter-spacing: 4px;
+            font-weight: 300;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        /* Projects Section */
+        main {
+            padding: 50px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            margin-bottom: 40px;
+            color: #fff;
+            text-transform: uppercase;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        /* Game Card */
+        .card {
+            background: var(--card-bg);
+            border: 1px solid #222;
+            padding: 30px;
+            border-radius: 4px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        .card:hover {
+            border-color: var(--accent-cyan);
+            transform: translateY(-10px);
+            box-shadow: 0 10px 30px rgba(0, 255, 204, 0.1);
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            font-size: 1.8rem;
+            color: var(--primary-gold);
+        }
+
+        .card p {
+            color: var(--text-gray);
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .status-badge {
+            display: inline-block;
+            font-size: 0.7rem;
+            padding: 4px 8px;
+            border: 1px solid var(--accent-cyan);
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            border-radius: 2px;
+        }
+
+        footer {
+            padding: 40px;
+            text-align: center;
+            color: #444;
+            font-size: 0.9rem;
+            border-top: 1px solid #111;
+        }
+
+        /* Decorative "Extreme" Lines */
+        .line {
+            width: 50px;
+            height: 2px;
+            background: var(--accent-cyan);
+            margin: 20px auto;
+        }
     </style>
 </head>
 <body>
 
-    <div class="hero">
-        <h1>THANA STUDIOS</h1>
-        <p>INFINITE SYSTEMS. ETERNAL GROWTH.</p>
-    </div>
+    <header>
+        <h1>Thana Studios</h1>
+        <div class="line"></div>
+        <p class="tagline">Always Ascending</p>
+    </header>
 
-    <section>
-        <h2>OUR PROJECTS</h2>
-        <div class="game-card">
-            <h3>Path of the Immortal</h3>
-            <p>A text based cultivation sim with infinite expansion.</p>
-            <a href="./path-of-the-immortal/">PLAY NOW</a>
-        </div>
-    </section>
-
-</body>
-</html>
+    <main>
+        <h2 class="section-title">Current Projects</h2>
+        
+        <div class="grid">
+            <a href="https://thana-studios.github.io/path-of-the-immortal/" class="card">
+                <div class="status-badge">Alpha Access</div>
+                <h3>Path of the Immortal</h3>
+                <p>A text based cultivation epic. Awaken in a new world, gather Qi
