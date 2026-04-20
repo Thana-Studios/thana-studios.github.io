@@ -3,168 +3,207 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios | Always Ascending</title>
+    <title>Thana Studios | Infinite Systems</title>
     <style>
-        /* Core Brand Colors */
         :root {
             --gold: #c5a059;
+            --gold-glow: rgba(197, 160, 89, 0.3);
             --cyan: #00ffcc;
-            --black: #000000;
-            --dark-grey: #0a0a0a;
-            --light-grey: #b0b0b0;
+            --bg: #050505;
+            --card: #0d0d0d;
+            --border: #1a1a1a;
         }
+
+        * { box-sizing: border-box; }
 
         body {
-            background-color: var(--black);
+            background-color: var(--bg);
             color: #ffffff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             margin: 0;
-            padding: 0;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Nav Bar */
+        /* Ambient Background Effect */
+        .ambient-glow {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
+            z-index: -1;
+        }
+
+        /* Navigation */
         nav {
-            padding: 20px 5%;
-            background: rgba(0, 0, 0, 0.9);
-            border-bottom: 1px solid #222;
+            padding: 30px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid var(--border);
         }
 
-        .logo {
-            font-weight: bold;
-            letter-spacing: 4px;
+        .studio-logo {
+            font-weight: 900;
+            letter-spacing: 5px;
             text-transform: uppercase;
-            color: var(--gold);
+            color: #fff;
+            border-left: 3px solid var(--gold);
+            padding-left: 15px;
         }
 
-        /* Hero */
+        /* Hero Section */
         header {
-            padding: 100px 20px;
+            padding: 120px 20px;
             text-align: center;
-            background: linear-gradient(180deg, #111 0%, #000 100%);
         }
 
         h1 {
-            font-size: 3.5rem;
+            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-weight: 900;
             margin: 0;
-            letter-spacing: 10px;
-            text-transform: uppercase;
+            letter-spacing: -2px;
+            background: linear-gradient(to bottom, #fff, #555);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
-        .tagline {
+        .hero-sub {
             color: var(--cyan);
-            letter-spacing: 5px;
-            font-size: 0.9rem;
-            margin-top: 10px;
             text-transform: uppercase;
+            letter-spacing: 8px;
+            font-size: 0.8rem;
+            margin-top: 20px;
         }
 
-        /* Content Container */
-        .wrapper {
-            max-width: 1100px;
+        /* Projects Section */
+        .section-container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 50px 20px;
+            padding: 100px 20px;
         }
 
-        .description {
-            text-align: center;
-            max-width: 700px;
-            margin: 0 auto 80px auto;
-            color: var(--light-grey);
-            font-size: 1.1rem;
+        .section-header {
+            margin-bottom: 50px;
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
         }
 
-        /* Game Cards */
-        .grid {
+        .section-header h2 {
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin: 0;
+        }
+
+        .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
             gap: 30px;
         }
 
-        .card {
-            background: var(--dark-grey);
-            border: 1px solid #222;
+        .project-card {
+            background: var(--card);
+            border: 1px solid var(--border);
             padding: 40px;
-            border-radius: 4px;
+            position: relative;
             text-decoration: none;
-            color: white;
-            transition: 0.3s ease;
-            display: block;
+            color: inherit;
+            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .card:hover {
+        .project-card:hover {
             border-color: var(--gold);
-            transform: translateY(-5px);
-            background: #111;
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--gold-glow);
         }
 
-        .card h3 {
-            margin: 0 0 10px 0;
-            font-size: 1.5rem;
+        .project-card .tag {
             color: var(--gold);
-        }
-
-        .card p {
-            color: var(--light-grey);
-            font-size: 0.95rem;
-            margin-bottom: 25px;
-        }
-
-        .btn {
-            font-weight: bold;
-            color: var(--cyan);
+            font-size: 0.7rem;
             text-transform: uppercase;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 15px;
         }
 
-        footer {
-            text-align: center;
-            padding: 50px;
-            color: #444;
+        .project-card h3 {
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+        }
+
+        .project-card p {
+            color: #888;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+
+        .card-footer {
+            margin-top: 30px;
+            display: flex;
+            align-items: center;
+            color: var(--cyan);
+            font-weight: bold;
             font-size: 0.8rem;
-            border-top: 1px solid #111;
+            text-transform: uppercase;
+        }
+
+        /* Footer */
+        footer {
+            padding: 80px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border);
+            background: #000;
+        }
+
+        .footer-text {
+            color: #444;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        @media (max-width: 768px) {
+            .project-grid { grid-template-columns: 1fr; }
+            nav { padding: 20px; }
         }
     </style>
 </head>
 <body>
 
+    <div class="ambient-glow"></div>
+
     <nav>
-        <div class="logo">Thana Studios</div>
-        <div style="font-size: 0.7rem; color: #555;">EST. 2026</div>
+        <div class="studio-logo">Thana Studios</div>
+        <div style="font-size: 0.7rem; color: var(--gold);">V. 1.0.4</div>
     </nav>
 
     <header>
         <h1>THANA STUDIOS</h1>
-        <div class="tagline">Infinite Expansion</div>
+        <div class="hero-sub">Infinite Systems &bull; Eternal Growth</div>
     </header>
 
-    <div class="wrapper">
-        <p class="description">
-            Dedicated to creating vast, text based cultivation experiences. 
-            Our systems focus on progression, legacy, and the pursuit of immortality.
-        </p>
+    <div class="section-container">
+        <div class="section-header">
+            <h2>Active Projects</h2>
+        </div>
 
-        <div class="grid">
-            <a href="./Soul-Awakening-First-Breath/" class="card">
-                <h3>Soul Awakening: First Breath</h3>
-                <p>Begin your journey. Awaken your spirit root, cultivate your Qi, and ascend beyond the mortal realm in this text-based epic.</p>
-                <div class="btn">Enter World &rarr;</div>
+        <div class="project-grid">
+            <a href="./soul-awakening-first-breath/" class="project-card">
+                <span class="tag">Grand Cultivation Sim</span>
+                <h3>Soul Awakening:<br>First Breath</h3>
+                <p>An expansive text-based epic where every choice echoes through your meridians. Awaken your spirit root and begin your ascent.</p>
+                <div class="card-footer">Enter the Realm &rarr;</div>
             </a>
 
-            <div class="card" style="opacity: 0.4; cursor: default;">
-                <h3>Project Aeterna</h3>
-                <p>The next evolution in cultivation management. Coming soon to Thana Studios.</p>
-                <div class="btn" style="color: #444;">Locked</div>
+            <div class="project-card" style="opacity: 0.5;">
+                <span class="tag">In Development</span>
+                <h3>Project<br>Sect Management</h3>
+                <p>The archives are currently sealed. Establish your legacy and command the heavens. Coming late 2026.</p>
+                <div class="card-footer" style="color: #444;">Access Denied</div>
             </div>
         </div>
     </div>
 
     <footer>
-        &copy; 2026 Thana Studios. Build for the Infinite.
+        <div class="footer-text">&copy; 2026 Thana Studios &bull; Built for the Infinite</div>
     </footer>
 
 </body>
