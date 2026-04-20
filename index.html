@@ -7,208 +7,241 @@
     <style>
         :root {
             --gold: #c5a059;
-            --gold-glow: rgba(197, 160, 89, 0.3);
+            --gold-bright: #e2c08d;
             --cyan: #00ffcc;
-            --bg: #050505;
-            --card: #0d0d0d;
-            --border: #1a1a1a;
+            --bg: #020202;
+            --card-bg: rgba(15, 15, 15, 0.6);
+            --border: rgba(255, 255, 255, 0.05);
+            --text-dim: #777;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
 
         body {
             background-color: var(--bg);
             color: #ffffff;
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             margin: 0;
+            line-height: 1.6;
             overflow-x: hidden;
         }
 
-        /* Ambient Background Effect */
-        .ambient-glow {
+        /* Subtle Background Animation */
+        body::before {
+            content: "";
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(circle at 50% 50%, #111 0%, #050505 100%);
+            background: radial-gradient(circle at 50% 50%, #0a0a0a 0%, #020202 100%);
             z-index: -1;
         }
 
-        /* Navigation */
+        /* Header / Nav */
         nav {
-            padding: 30px 10%;
+            padding: 40px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            border-bottom: 1px solid var(--border);
         }
 
-        .studio-logo {
-            font-weight: 900;
-            letter-spacing: 5px;
+        .brand {
+            font-weight: 800;
+            letter-spacing: 6px;
             text-transform: uppercase;
-            color: #fff;
-            border-left: 3px solid var(--gold);
-            padding-left: 15px;
+            border-left: 2px solid var(--gold);
+            padding-left: 20px;
+            font-size: 1.1rem;
         }
 
-        /* Hero Section */
-        header {
-            padding: 120px 20px;
-            text-align: center;
+        /* Hero */
+        .hero {
+            padding: 100px 10% 60px;
+            max-width: 1400px;
         }
 
         h1 {
-            font-size: clamp(2.5rem, 10vw, 5rem);
+            font-size: clamp(3rem, 12vw, 6rem);
             font-weight: 900;
             margin: 0;
-            letter-spacing: -2px;
-            background: linear-gradient(to bottom, #fff, #555);
+            letter-spacing: -3px;
+            line-height: 0.9;
+            background: linear-gradient(to bottom, #fff 40%, #444 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        .hero-sub {
-            color: var(--cyan);
+        .hero-description {
+            max-width: 600px;
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            margin-top: 30px;
+            border-left: 1px solid var(--gold);
+            padding-left: 25px;
+        }
+
+        /* Main Content Grid */
+        .content-section {
+            padding: 80px 10%;
+        }
+
+        .section-title {
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 8px;
-            font-size: 0.8rem;
-            margin-top: 20px;
-        }
-
-        /* Projects Section */
-        .section-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        .section-header {
-            margin-bottom: 50px;
-            border-left: 2px solid var(--gold);
-            padding-left: 20px;
-        }
-
-        .section-header h2 {
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin: 0;
+            letter-spacing: 4px;
+            color: var(--gold);
+            margin-bottom: 40px;
+            display: block;
         }
 
         .project-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 2px; /* Cinematic hairline gap */
+            background-color: var(--border);
+            border: 1px solid var(--border);
         }
 
         .project-card {
-            background: var(--card);
-            border: 1px solid var(--border);
-            padding: 40px;
-            position: relative;
+            background-color: var(--bg);
+            padding: 60px 40px;
             text-decoration: none;
             color: inherit;
-            transition: 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 400px;
+            position: relative;
+            overflow: hidden;
         }
 
         .project-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px var(--gold-glow);
+            background-color: #070707;
         }
 
-        .project-card .tag {
+        .project-card::after {
+            content: "→";
+            position: absolute;
+            bottom: 40px; right: 40px;
+            font-size: 1.5rem;
             color: var(--gold);
-            font-size: 0.7rem;
+            opacity: 0;
+            transform: translateX(-20px);
+        }
+
+        .project-card:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .tag {
+            font-size: 0.65rem;
             text-transform: uppercase;
             letter-spacing: 2px;
+            color: var(--cyan);
+            margin-bottom: 20px;
             display: block;
-            margin-bottom: 15px;
         }
 
         .project-card h3 {
-            font-size: 1.8rem;
-            margin: 0 0 15px 0;
+            font-size: 2rem;
+            margin: 0 0 20px 0;
+            font-weight: 700;
+            max-width: 280px;
         }
 
         .project-card p {
-            color: #888;
+            color: var(--text-dim);
             font-size: 0.95rem;
-            line-height: 1.6;
+            margin: 0;
+            max-width: 320px;
         }
 
-        .card-footer {
-            margin-top: 30px;
-            display: flex;
-            align-items: center;
-            color: var(--cyan);
-            font-weight: bold;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
-
-        /* Footer */
+        /* Footer Area */
         footer {
-            padding: 80px 20px;
-            text-align: center;
+            margin-top: 100px;
+            padding: 80px 10%;
             border-top: 1px solid var(--border);
-            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
         }
 
-        .footer-text {
-            color: #444;
-            font-size: 0.7rem;
+        .patreon-link {
+            color: var(--gold);
+            text-decoration: none;
+            border: 1px solid var(--gold);
+            padding: 15px 40px;
+            font-size: 0.75rem;
             text-transform: uppercase;
             letter-spacing: 3px;
+            margin-bottom: 40px;
+        }
+
+        .patreon-link:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        .copyright {
+            font-size: 0.6rem;
+            color: #333;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
         @media (max-width: 768px) {
             .project-grid { grid-template-columns: 1fr; }
-            nav { padding: 20px; }
+            h1 { font-size: 3.5rem; }
+            nav { padding: 20px 5%; }
+            .hero { padding: 60px 5%; }
         }
     </style>
 </head>
 <body>
 
-    <div class="ambient-glow"></div>
-
     <nav>
-        <div class="studio-logo">Thana Studios</div>
-        <div style="font-size: 0.7rem; color: var(--gold);">V. 1.0.4</div>
+        <div class="brand">Thana Studios</div>
+        <div style="font-size: 0.7rem; color: var(--text-dim);">EST 2026</div>
     </nav>
 
-    <header>
-        <h1>THANA STUDIOS</h1>
-        <div class="hero-sub">Infinite Systems &bull; Eternal Growth</div>
-    </header>
-
-    <div class="section-container">
-        <div class="section-header">
-            <h2>Active Projects</h2>
+    <section class="hero">
+        <h1>ALWAYS<br>ASCENDING</h1>
+        <div class="hero-description">
+            Architects of infinite progression. We specialize in deep, systemic cultivation experiences where your journey never truly ends.
         </div>
+    </section>
 
-<div class="project-grid">
-    <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="project-card">
-        <span class="tag">Grand Cultivation Sim</span>
-        <h3>Soul Awakening:<br>First Breath</h3>
-        <p>An expansive text-based epic where every choice echoes through your meridians. Awaken your spirit root and begin your ascent.</p>
-        <div class="card-footer">Enter the Realm &rarr;</div>
-    </a>
+    <section class="content-section">
+        <span class="section-title">Current Archive</span>
+        <div class="project-grid">
+            
+            <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="project-card">
+                <div>
+                    <span class="tag">Text Based RPG &bull; Live</span>
+                    <h3>Soul Awakening:<br>First Breath</h3>
+                    <p>Begin your journey from a mere mortal to a master of the heavens. A systemic sim focusing on spirit roots and realm breakthroughs.</p>
+                </div>
+            </a>
 
-    <div class="project-card" style="opacity: 0.5; cursor: default;">
-        <span class="tag">In Development</span>
-        <h3>Project<br>Sect Management</h3>
-        <p>The archives are currently sealed. Establish your legacy and command the heavens. Coming late 2026.</p>
-        <div class="card-footer" style="color: #444;">Access Denied</div>
-    </div>
-</div>
+            <div class="project-card" style="opacity: 0.4; cursor: default;">
+                <div>
+                    <span class="tag">Strategy &bull; In Dev</span>
+                    <h3>Project<br>Sect Management</h3>
+                    <p>Command the heavens. Build your legacy, recruit disciples, and wage war across the three realms. Coming late 2026.</p>
+                </div>
+            </div>
 
-<footer>
-    <div class="footer-text">
-        &copy; 2026 Thana Studios &bull; Built for the Infinite<br><br>
-        <a href="YOUR_PATREON_URL_HERE" target="_blank" style="color: var(--gold); text-decoration: none; border: 1px solid var(--gold); padding: 8px 15px; border-radius: 4px; font-size: 0.7rem; letter-spacing: 2px;">
-            Support the Studio on Patreon
+        </div>
+    </section>
+
+    <footer>
+        <a href="https://www.patreon.com/c/ThanaStudios" target="_blank" class="patreon-link">
+            Support the Expansion
         </a>
-    </div>
-</footer>
+        <div class="copyright">
+            &copy; 2026 Thana Studios &bull; Infinite Systems Division
+        </div>
+    </footer>
 
 </body>
 </html>
