@@ -3,176 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios | Game Development</title>
+    <title>Thana Studios | Soul Awakening</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+    
     <style>
-        /* Using the original dark studio palette */
         :root {
-            --bg-color: #050505;
-            --container-bg: #111111;
-            --accent-primary: #ffffff; /* Classic white for high contrast */
-            --accent-secondary: #444444; 
-            --text-primary: #ffffff;
-            --text-secondary: #888888;
-            --border-style: 1px solid #222;
+            --gold: #c5a059;
+            --qi-cyan: #00ffcc;
+            --karma-red: #ff4d4d;
+            --bg-black: #050505;
+            --border: rgba(255, 255, 255, 0.08);
         }
 
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
 
         body {
-            font-family: "Courier New", Courier, monospace; /* Keeping a dev-centric feel */
-            background-color: var(--bg-color);
-            color: var(--text-primary);
+            background-color: #000;
+            color: #eee;
+            font-family: 'Inter', sans-serif;
             line-height: 1.6;
+            overflow-x: hidden;
         }
 
-        /* Hero Section */
+        /* --- Hero Section --- */
         header {
-            height: 60vh;
+            height: 85vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            border-bottom: var(--border-style);
+            background: radial-gradient(circle at center, #151515 0%, #000 100%);
+            border-bottom: 1px solid var(--border);
             text-align: center;
             padding: 20px;
+            position: relative;
         }
 
-        h1 {
-            font-size: 3.5rem;
-            letter-spacing: 5px;
-            margin-bottom: 10px;
+        .studio-tag { 
+            font-size: 0.7rem; 
+            letter-spacing: 10px; 
+            color: var(--gold); 
             text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: 900;
+            opacity: 0.8;
         }
 
-        .subtitle {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            letter-spacing: 2px;
+        .hero-title { 
+            font-family: 'Cinzel', serif; 
+            font-size: clamp(2.5rem, 8vw, 5.5rem); 
+            color: #fff;
+            text-shadow: 0 0 40px rgba(197, 160, 89, 0.2);
+            margin-bottom: 5px;
+            line-height: 1;
         }
 
-        /* Portfolio Grid */
-        .main-content {
-            max-width: 1100px;
+        .hero-subtitle {
+            font-family: 'Cinzel', serif;
+            color: var(--gold);
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            margin-bottom: 40px;
+            opacity: 0.9;
+        }
+
+        /* --- Main Content --- */
+        .container {
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 60px 20px;
+            padding: 100px 20px;
         }
 
-        .grid {
+        .section-label {
+            font-size: 0.6rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 60px;
+            display: flex;
+            align-items: center;
+            gap: 25px;
+        }
+
+        .section-label::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border);
+        }
+
+        /* --- Game Grid --- */
+        .game-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 50px;
         }
 
-        .card {
-            background-color: var(--container-bg);
-            border: var(--border-style);
-            transition: all 0.3s ease;
+        .game-card {
+            background: var(--bg-black);
+            border: 1px solid var(--border);
+            border-radius: 2px;
+            transition: 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+            overflow: hidden;
         }
 
-        .card:hover {
-            border-color: var(--accent-primary);
-            transform: translateY(-5px);
+        .game-card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.6);
         }
 
-        .card-img {
+        .card-image {
             width: 100%;
-            height: 200px;
-            background-color: #1a1a1a;
+            height: 280px;
+            background: #111;
             object-fit: cover;
-            border-bottom: var(--border-style);
+            opacity: 0.5;
+            transition: 0.6s;
+            filter: grayscale(40%);
         }
 
-        .card-body {
-            padding: 20px;
+        .game-card:hover .card-image {
+            opacity: 1;
+            filter: grayscale(0%);
+        }
+
+        .card-content {
+            padding: 40px;
         }
 
         .card-title {
-            font-size: 1.2rem;
-            margin-bottom: 10px;
-            color: var(--accent-primary);
-        }
-
-        .card-desc {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: #fff;
             margin-bottom: 15px;
         }
 
-        /* Navigation & Links */
-        .links {
-            display: flex;
-            gap: 15px;
+        .card-desc {
+            font-size: 1rem;
+            color: #888;
+            margin-bottom: 30px;
         }
 
-        .links a {
-            color: var(--text-primary);
+        /* Progress Bars */
+        .bar-container { margin-bottom: 30px; }
+        .bar-label { font-size: 0.55rem; text-transform: uppercase; color: #555; margin-bottom: 10px; display: block; letter-spacing: 1px; }
+        .bar-bg { width: 100%; height: 2px; background: rgba(255,255,255,0.05); }
+        .bar-fill { height: 100%; background: var(--qi-cyan); box-shadow: 0 0 15px var(--qi-cyan); transition: width 2s ease; }
+
+        /* Action Buttons */
+        .action-link {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #fff;
+            padding: 14px 28px;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            cursor: pointer;
             text-decoration: none;
-            font-size: 0.8rem;
-            border-bottom: 1px solid transparent;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            transition: 0.3s;
         }
 
-        .links a:hover {
-            border-bottom: 1px solid var(--accent-primary);
+        .action-link:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background: rgba(197, 160, 89, 0.05);
         }
 
+        .breakthrough {
+            border-color: var(--gold);
+            color: var(--gold);
+            font-weight: 900;
+        }
+
+        /* --- Footer --- */
         footer {
+            padding: 120px 20px;
+            background: var(--bg-black);
+            border-top: 1px solid var(--border);
             text-align: center;
-            padding: 40px;
-            border-top: var(--border-style);
-            color: var(--text-secondary);
-            font-size: 0.8rem;
         }
 
-        @media (max-width: 768px) {
-            h1 { font-size: 2.5rem; }
+        .status-line {
+            font-size: 0.6rem;
+            letter-spacing: 4px;
+            color: #222;
+            text-transform: uppercase;
+            margin-bottom: 40px;
+        }
+
+        .cyan-glow { color: var(--qi-cyan); text-shadow: 0 0 5px var(--qi-cyan); }
+
+        .footer-nav {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto 60px auto;
+        }
+
+        .nav-box {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: #666;
+            padding: 25px;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+        }
+
+        .nav-box:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+        }
+
+        .nav-box .sub-label { font-size: 0.45rem; color: #333; letter-spacing: 1px; }
+
+        .copyright {
+            font-family: 'Cinzel', serif;
+            font-size: 0.85rem;
+            color: #333;
+            letter-spacing: 2px;
+        }
+
+        @media (max-width: 800px) {
+            .game-grid { grid-template-columns: 1fr; }
+            .footer-nav { grid-template-columns: 1fr; }
+            header { height: 60vh; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>THANA STUDIOS</h1>
-        <p class="subtitle">// INDEPENDENT GAME ARCHITECTURE</p>
+        <div class="studio-tag">Thana Studios Presents</div>
+        <h1 class="hero-title">SOUL AWAKENING</h1>
+        <div class="hero-subtitle">FIRST BREATH</div>
+        <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="action-link breakthrough">Begin Cultivation</a>
     </header>
 
-    <main class="main-content">
-        <div class="grid">
-            <div class="card">
-                <img src="game1-preview.png" alt="Game One" class="card-img">
-                <div class="card-body">
-                    <h3 class="card-title">PROJECT_01</h3>
-                    <p class="card-desc">Atmospheric exploration within a digital void. Built for the modern web.</p>
-                    <div class="links">
-                        <a href="#">[PLAY_GAME]</a>
-                        <a href="#">[SOURCE]</a>
+    <main class="container">
+        <div class="section-label">Active Projects</div>
+        
+        <div class="game-grid">
+            <article class="game-card">
+                <img src="https://thana-studios.github.io/Soul-Awakening-First-Breath/preview.jpg" alt="Soul Awakening" class="card-image">
+                <div class="card-content">
+                    <h3 class="card-title">SOUL AWAKENING</h3>
+                    <div class="bar-container">
+                        <span class="bar-label">Current Phase: First Breath</span>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
                     </div>
+                    <p class="card-desc">Navigate the path of immortality. A browser based cultivation journey through the celestial realms.</p>
+                    <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="action-link breakthrough">Access Archive</a>
                 </div>
-            </div>
+            </article>
 
-            <div class="card">
-                <img src="game2-preview.png" alt="Game Two" class="card-img">
-                <div class="card-body">
-                    <h3 class="card-title">PROJECT_02</h3>
-                    <p class="card-desc">Minimalist physics engine testing high-speed collisions and logic.</p>
-                    <div class="links">
-                        <a href="#">[PLAY_GAME]</a>
-                        <a href="#">[SOURCE]</a>
-                    </div>
+            <article class="game-card">
+                <div class="card-image" style="display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; color: #222;">
+                    LOCKED_NODE
                 </div>
-            </div>
+                <div class="card-content">
+                    <h3 class="card-title" style="color: #444;">UNKNOWN_SIM</h3>
+                    <div class="bar-container">
+                        <span class="bar-label" style="color: #222;">Stability Unknown</span>
+                        <div class="bar-bg"><div class="bar-fill" style="width: 15%; background: var(--karma-red); box-shadow: none;"></div></div>
+                    </div>
+                    <p class="card-desc" style="color: #333;">The next manifestation is currently gathering Qi. Please check back at a later rotation.</p>
+                    <span class="action-link" style="opacity: 0.3; cursor: default;">System Restricted</span>
+                </div>
+            </article>
         </div>
     </main>
 
     <footer>
-        <div style="margin-bottom: 15px;">
-            <a href="https://github.com/thana-studios" style="color: inherit; margin: 0 10px;">GitHub</a>
-            <a href="https://discord.gg/35eeBFeDVZ" style="color: inherit; margin: 0 10px;">Discord</a>
+        <div class="status-line">
+            Network: <span class="cyan-glow">Synchronized</span> // Nodes: <span style="color:#444">01 Active</span>
         </div>
-        <p>EST 2026. ALL SYSTEMS OPERATIONAL.</p>
+
+        <nav class="footer-nav">
+            <a href="https://github.com/thana-studios" class="nav-box" target="_blank">
+                <span class="sub-label">Repository</span>
+                GitHub
+            </a>
+            <a href="https://discord.gg/35eeBFeDVZ" class="nav-box" target="_blank">
+                <span class="sub-label">Nexus</span>
+                Discord
+            </a>
+            <a href="mailto:thanastudios@outlook.com" class="nav-box">
+                <span class="sub-label">Comm-Link</span>
+                Contact
+            </a>
+        </nav>
+
+        <div class="copyright">
+            &copy; 2026 <span style="color: var(--gold);">THANA STUDIOS</span>
+        </div>
     </footer>
 
 </body>
