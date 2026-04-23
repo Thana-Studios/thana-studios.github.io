@@ -3,17 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios | Soul Awakening: First Breath</title>
-    
+    <title>Thana Studios</title>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
-    
     <style>
         :root {
             --gold: #c5a059;
             --qi-cyan: #00ffcc;
-            --karma-red: #ff4d4d;
-            --bg-black: #050505;
-            --border: rgba(255, 255, 255, 0.08);
+            --bg-black: #000000;
+            --border: rgba(255, 255, 255, 0.1);
+            --text-dim: #666;
         }
 
         * { 
@@ -23,293 +21,168 @@
         }
 
         body {
-            background-color: #000;
+            background-color: var(--bg-black);
             color: #eee;
             font-family: 'Inter', sans-serif;
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        /* --- Hero / Brand Header --- */
-        header {
-            height: 85vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background: radial-gradient(circle at center, #111 0%, #000 100%);
-            border-bottom: 1px solid var(--border);
-            text-align: center;
+            line-height: 1.5;
             padding: 20px;
         }
 
-        .studio-name { 
-            font-size: 0.7rem; 
-            letter-spacing: 10px; 
-            color: var(--gold); 
-            text-transform: uppercase;
-            margin-bottom: 15px;
-            font-weight: 900;
-        }
-
-        .hero-title { 
-            font-family: 'Cinzel', serif; 
-            font-size: clamp(2rem, 6vw, 4.5rem); 
-            color: #fff;
-            text-shadow: 0 0 30px rgba(197, 160, 89, 0.2);
-            line-height: 1.1;
-        }
-
-        .hero-subtitle {
-            font-family: 'Cinzel', serif;
-            color: var(--gold);
-            font-size: 1rem;
-            letter-spacing: 4px;
-            margin-top: 10px;
-            margin-bottom: 40px;
-            opacity: 0.8;
-        }
-
-        /* --- Project Showcase --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 100px 20px;
-        }
-
-        .section-label {
-            font-size: 0.6rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            color: var(--gold);
-            margin-bottom: 50px;
+        /* --- Main Layout --- */
+        .wrapper {
+            max-width: 900px;
+            margin: 40px auto;
+            border-left: 1px solid var(--border);
+            border-right: 1px solid var(--border);
+            min-height: calc(100vh - 80px);
             display: flex;
-            align-items: center;
-            gap: 20px;
+            flex-direction: column;
         }
 
-        .section-label::after {
-            content: "";
-            height: 1px;
-            flex-grow: 1;
-            background: var(--border);
+        /* --- Header Section --- */
+        header {
+            padding: 40px;
+            border-bottom: 1px solid var(--border);
         }
 
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-            gap: 40px;
-        }
-
-        .game-card {
-            background: var(--bg-black);
-            border: 1px solid var(--border);
-            border-radius: 2px;
-            transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            position: relative;
-        }
-
-        .game-card:hover {
-            border-color: var(--gold);
-            transform: translateY(-10px);
-        }
-
-        .card-image {
-            width: 100%;
-            height: 280px;
-            background: #111;
-            object-fit: cover;
-            opacity: 0.5;
-            transition: 0.6s;
-        }
-
-        .game-card:hover .card-image {
-            opacity: 1;
-        }
-
-        .card-content {
-            padding: 35px;
-        }
-
-        .card-title {
+        .studio-logo {
             font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            color: #fff;
-            margin-bottom: 10px;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            font-weight: 700;
+            margin-bottom: 8px;
         }
 
-        .card-desc {
-            font-size: 0.95rem;
-            color: #777;
-            margin-bottom: 30px;
-            min-height: 3em;
-        }
-
-        /* Status & Progress */
-        .status-module { margin-bottom: 25px; }
-        .status-label { font-size: 0.55rem; text-transform: uppercase; color: #444; margin-bottom: 8px; display: block; letter-spacing: 1px; }
-        .bar-bg { width: 100%; height: 2px; background: rgba(255,255,255,0.05); }
-        .bar-fill { height: 100%; background: var(--qi-cyan); box-shadow: 0 0 10px var(--qi-cyan); transition: width 1s ease; }
-
-        /* Action Buttons */
-        .action-link {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: #fff;
-            padding: 12px 28px;
-            font-size: 0.65rem;
+        .studio-description {
+            font-size: 0.8rem;
+            color: var(--text-dim);
             text-transform: uppercase;
             letter-spacing: 2px;
-            cursor: pointer;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            transition: 0.3s;
         }
 
-        .action-link:hover {
-            border-color: var(--gold);
-            color: var(--gold);
-            background: rgba(197, 160, 89, 0.05);
+        /* --- Content Grid --- */
+        .content {
+            flex-grow: 1;
         }
 
-        .breakthrough {
-            border-color: var(--gold);
-            color: var(--gold);
-            font-weight: 900;
-        }
-
-        /* --- Footer (System Interface) --- */
-        footer {
-            padding: 120px 20px;
-            background: var(--bg-black);
-            border-top: 1px solid var(--border);
-            text-align: center;
-        }
-
-        .system-status {
-            font-size: 0.55rem;
-            letter-spacing: 3px;
-            color: #333;
-            text-transform: uppercase;
-            margin-bottom: 40px;
-        }
-
-        .cyan-glow { color: var(--qi-cyan); text-shadow: 0 0 5px var(--qi-cyan); }
-
-        .footer-nav {
+        .project-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 15px;
-            max-width: 600px;
-            margin: 0 auto 50px auto;
+            grid-template-columns: 1fr 180px;
+            padding: 40px;
+            border-bottom: 1px solid var(--border);
+            transition: background 0.2s ease;
+            text-decoration: none;
+            color: inherit;
         }
 
-        .nav-box {
-            background: transparent;
-            border: 1px solid var(--border);
-            color: #888;
-            padding: 20px;
-            text-decoration: none;
+        .project-row:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .project-info h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .project-info p {
+            font-size: 0.9rem;
+            color: var(--text-dim);
+            max-width: 500px;
+        }
+
+        .project-action {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 10px;
+            justify-content: flex-end;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 2px;
-            transition: 0.3s;
-        }
-
-        .nav-box:hover {
-            border-color: var(--gold);
             color: var(--gold);
+            font-weight: 900;
         }
 
-        .nav-box span { font-size: 0.45rem; color: #444; }
+        /* --- Footer Section --- */
+        footer {
+            padding: 40px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-link {
+            text-decoration: none;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.2s;
+        }
+
+        .footer-link:hover {
+            color: var(--qi-cyan);
+        }
 
         .copyright {
-            font-family: 'Cinzel', serif;
-            font-size: 0.8rem;
-            color: #444;
+            grid-column: 1 / -1;
+            margin-top: 40px;
+            font-size: 0.65rem;
+            color: #222;
+            text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        @media (max-width: 768px) {
-            .game-grid { grid-template-columns: 1fr; }
-            .footer-nav { grid-template-columns: 1fr; }
+        @media (max-width: 600px) {
+            .wrapper { border: none; margin: 0; }
+            .project-row { grid-template-columns: 1fr; gap: 20px; }
+            .project-action { justify-content: flex-start; }
+            header, .project-row, footer { padding: 30px 20px; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <div class="studio-name">Thana Studios</div>
-        <h1 class="hero-title">SOUL AWAKENING</h1>
-        <p class="hero-subtitle">FIRST BREATH</p>
-        <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="action-link breakthrough">Initialize Cultivation</a>
-    </header>
+    <div class="wrapper">
+        <header>
+            <div class="studio-logo">Thana Studios</div>
+            <div class="studio-description">Independent Game Development // Digital Alchemy</div>
+        </header>
 
-    <main class="container">
-        <div class="section-label">Active Manifestations</div>
-        
-        <div class="game-grid">
-            <article class="game-card">
-                <img src="preview-image.jpg" alt="Soul Awakening: First Breath" class="card-image">
-                <div class="card-content">
-                    <h3 class="card-title">SOUL AWAKENING</h3>
-                    <div class="status-module">
-                        <span class="status-label">Phase: First Breath</span>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 100%;"></div></div>
-                    </div>
-                    <p class="card-desc">An immersive journey through celestial realms. Master your Qi and navigate the path to immortality.</p>
-                    <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="action-link breakthrough">Enter Realm</a>
+        <main class="content">
+            <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="project-row">
+                <div class="project-info">
+                    <h2>Soul Awakening: First Breath</h2>
+                    <p>Navigate the path of immortality. A browser based cultivation journey through the celestial realms.</p>
                 </div>
-            </article>
-
-            <article class="game-card">
-                <div class="card-image" style="display: flex; align-items: center; justify-content: center; font-family: 'Cinzel', serif; font-size: 0.8rem; color: #222;">
-                    LOCKED_NODE
+                <div class="project-action">
+                    [ Initialize ]
                 </div>
-                <div class="card-content">
-                    <h3 class="card-title" style="color: #444;">VOID_PROJECT</h3>
-                    <div class="status-module">
-                        <span class="status-label">Gathering Qi</span>
-                        <div class="bar-bg"><div class="bar-fill" style="width: 25%; background: var(--karma-red); box-shadow: 0 0 10px var(--karma-red);"></div></div>
-                    </div>
-                    <p class="card-desc" style="color: #333;">The next manifestation is currently forming within the digital void.</p>
-                    <span class="action-link" style="opacity: 0.3; cursor: default;">Access Denied</span>
+            </a>
+
+            <div class="project-row" style="opacity: 0.5; cursor: default;">
+                <div class="project-info">
+                    <h2>Void_Project</h2>
+                    <p>Forming within the digital void. Access currently restricted.</p>
                 </div>
-            </article>
-        </div>
-    </main>
+                <div class="project-action" style="color: #333;">
+                    [ Locked ]
+                </div>
+            </div>
+        </main>
 
-    <footer>
-        <div class="system-status">
-            Interface: <span class="cyan-glow">Synchronized</span> // Status: Stable
-        </div>
-
-        <nav class="footer-nav">
-            <a href="https://github.com/thana-studios" class="nav-box" target="_blank">
-                <span>Repository</span>
-                GitHub
-            </a>
-            <a href="https://discord.gg/35eeBFeDVZ" class="nav-box" target="_blank">
-                <span>Nexus</span>
-                Discord
-            </a>
-            <a href="mailto:thanastudios@outlook.com" class="nav-box">
-                <span>Comm-Link</span>
-                Contact
-            </a>
-        </nav>
-
-        <div class="copyright">
-            &copy; 2026 <span style="color: var(--gold);">THANA STUDIOS</span>
-        </div>
-    </footer>
+        <footer>
+            <a href="https://github.com/thana-studios" class="footer-link" target="_blank">GitHub</a>
+            <a href="https://discord.gg/35eeBFeDVZ" class="footer-link" target="_blank">Discord</a>
+            <a href="mailto:thanastudios@outlook.com" class="footer-link">Contact</a>
+            
+            <div class="copyright">
+                &copy; 2026 Thana Studios // All Systems Operational
+            </div>
+        </footer>
+    </div>
 
 </body>
 </html>
