@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios | Independent Game Development</title>
+    <title>Thana Studios | Game Development</title>
     <style>
+        /* Using the original dark studio palette */
         :root {
-            --accent-color: #ff3e3e; /* Bold red for a studio feel */
-            --bg-dark: #0a0a0a;
-            --card-bg: #161616;
-            --text-main: #eeeeee;
-            --text-dim: #a0a0a0;
+            --bg-color: #050505;
+            --container-bg: #111111;
+            --accent-primary: #ffffff; /* Classic white for high contrast */
+            --accent-secondary: #444444; 
+            --text-primary: #ffffff;
+            --text-secondary: #888888;
+            --border-style: 1px solid #222;
         }
 
         * {
@@ -20,193 +23,156 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
-            background-color: var(--bg-dark);
-            color: var(--text-main);
-            overflow-x: hidden;
+            font-family: "Courier New", Courier, monospace; /* Keeping a dev-centric feel */
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            line-height: 1.6;
         }
 
-        /* Hero Section with Glassmorphism */
+        /* Hero Section */
         header {
-            height: 80vh;
+            height: 60vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
+            border-bottom: var(--border-style);
             text-align: center;
-            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4), var(--bg-dark)), 
-                        url('your-game-screenshot-blur.jpg') no-repeat center center/cover;
             padding: 20px;
         }
 
         h1 {
-            font-size: clamp(3rem, 10vw, 5rem);
-            letter-spacing: -2px;
-            text-transform: uppercase;
+            font-size: 3.5rem;
+            letter-spacing: 5px;
             margin-bottom: 10px;
-        }
-
-        .studio-tagline {
-            font-size: 1.2rem;
-            color: var(--text-dim);
-            margin-bottom: 30px;
-            max-width: 600px;
-        }
-
-        .btn-primary {
-            background-color: var(--accent-color);
-            color: white;
-            padding: 15px 40px;
-            text-decoration: none;
-            font-weight: bold;
-            border-radius: 4px;
-            transition: all 0.3s ease;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .btn-primary:hover {
-            background-color: #ff5e5e;
-            box-shadow: 0 0 20px rgba(255, 62, 62, 0.4);
+        .subtitle {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            letter-spacing: 2px;
         }
 
-        /* Projects Section */
-        .container {
-            max-width: 1200px;
+        /* Portfolio Grid */
+        .main-content {
+            max-width: 1100px;
             margin: 0 auto;
-            padding: 80px 20px;
-        }
-
-        .section-title {
-            font-size: 2rem;
-            margin-bottom: 40px;
-            border-left: 4px solid var(--accent-color);
-            padding-left: 15px;
-        }
-
-        .game-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .game-card {
-            background: var(--card-bg);
-            border-radius: 12px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-            border: 1px solid #222;
-        }
-
-        .game-card:hover {
-            transform: translateY(-10px);
-            border-color: #444;
-        }
-
-        .game-thumb {
-            width: 100%;
-            height: 220px;
-            background-color: #333;
-            object-fit: cover;
-        }
-
-        .game-content {
-            padding: 25px;
-        }
-
-        .game-status {
-            display: inline-block;
-            font-size: 0.75rem;
-            background: rgba(255, 62, 62, 0.1);
-            color: var(--accent-color);
-            padding: 4px 10px;
-            border-radius: 20px;
-            margin-bottom: 10px;
-            font-weight: bold;
-        }
-
-        .game-content h3 {
-            margin-bottom: 10px;
-            font-size: 1.5rem;
-        }
-
-        .game-content p {
-            color: var(--text-dim);
-            font-size: 0.95rem;
-            margin-bottom: 20px;
-        }
-
-        /* Footer */
-        footer {
             padding: 60px 20px;
-            text-align: center;
-            border-top: 1px solid #1a1a1a;
-            color: var(--text-dim);
         }
 
-        .social-links a {
-            color: var(--text-main);
-            text-decoration: none;
-            margin: 0 15px;
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .card {
+            background-color: var(--container-bg);
+            border: var(--border-style);
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--accent-primary);
+            transform: translateY(-5px);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 200px;
+            background-color: #1a1a1a;
+            object-fit: cover;
+            border-bottom: var(--border-style);
+        }
+
+        .card-body {
+            padding: 20px;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: var(--accent-primary);
+        }
+
+        .card-desc {
+            color: var(--text-secondary);
             font-size: 0.9rem;
+            margin-bottom: 15px;
         }
 
-        .social-links a:hover {
-            color: var(--accent-color);
+        /* Navigation & Links */
+        .links {
+            display: flex;
+            gap: 15px;
         }
 
-        @media (max-width: 600px) {
-            .game-grid {
-                grid-template-columns: 1fr;
-            }
+        .links a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 0.8rem;
+            border-bottom: 1px solid transparent;
+        }
+
+        .links a:hover {
+            border-bottom: 1px solid var(--accent-primary);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            border-top: var(--border-style);
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
     <header>
-        <h1>THANA</h1>
-        <p class="studio-tagline">Pushing boundaries through immersive independent gameplay experiences.</p>
-        <a href="#games" class="btn-primary">View Games</a>
+        <h1>THANA STUDIOS</h1>
+        <p class="subtitle">// INDEPENDENT GAME ARCHITECTURE</p>
     </header>
 
-    <div class="container" id="games">
-        <h2 class="section-title">Latest Releases</h2>
-        
-        <div class="game-grid">
-            <div class="game-card">
-                <img src="your-game-image-1.webp" alt="Project Alpha" class="game-thumb">
-                <div class="game-content">
-                    <span class="game-status">IN DEVELOPMENT</span>
-                    <h3>Project Alpha</h3>
-                    <p>A fast paced atmospheric survival horror game set in the depths of a crumbling orbital station.</p>
-                    <div class="social-links">
-                        <a href="#">Steam</a> • <a href="#">Itch.io</a>
+    <main class="main-content">
+        <div class="grid">
+            <div class="card">
+                <img src="game1-preview.png" alt="Game One" class="card-img">
+                <div class="card-body">
+                    <h3 class="card-title">PROJECT_01</h3>
+                    <p class="card-desc">Atmospheric exploration within a digital void. Built for the modern web.</p>
+                    <div class="links">
+                        <a href="#">[PLAY_GAME]</a>
+                        <a href="#">[SOURCE]</a>
                     </div>
                 </div>
             </div>
 
-            <div class="game-card">
-                <img src="your-game-image-2.webp" alt="Project Beta" class="game-thumb">
-                <div class="game-content">
-                    <span class="game-status">AVAILABLE NOW</span>
-                    <h3>Project Beta</h3>
-                    <p>An experimental physics based puzzler that challenges your perception of gravity and space.</p>
-                    <div class="social-links">
-                        <a href="#">Play Now</a>
+            <div class="card">
+                <img src="game2-preview.png" alt="Game Two" class="card-img">
+                <div class="card-body">
+                    <h3 class="card-title">PROJECT_02</h3>
+                    <p class="card-desc">Minimalist physics engine testing high-speed collisions and logic.</p>
+                    <div class="links">
+                        <a href="#">[PLAY_GAME]</a>
+                        <a href="#">[SOURCE]</a>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+    </main>
 
     <footer>
-        <div class="social-links" style="margin-bottom: 20px;">
-            <a href="https://github.com/thana-studios">GitHub</a>
-            <a href="https://discord.gg/35eeBFeDVZ">Discord</a>
-            <a href="mailto:thanastudios@outlook.com">Contact</a>
+        <div style="margin-bottom: 15px;">
+            <a href="https://github.com/thana-studios" style="color: inherit; margin: 0 10px;">GitHub</a>
+            <a href="https://discord.gg/35eeBFeDVZ" style="color: inherit; margin: 0 10px;">Discord</a>
         </div>
-        <p>&copy; 2026 Thana Studios. All rights reserved.</p>
+        <p>EST 2026. ALL SYSTEMS OPERATIONAL.</p>
     </footer>
 
 </body>
