@@ -3,186 +3,347 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thana Studios</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;900&display=swap" rel="stylesheet">
+    <title>Thana Studios | Index</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --gold: #c5a059;
             --qi-cyan: #00ffcc;
-            --bg-black: #000000;
-            --border: rgba(255, 255, 255, 0.1);
-            --text-dim: #666;
+            --bg-deep: #0a0a0a;
+            --glass: rgba(18, 18, 18, 0.6);
+            --border-subtle: rgba(255, 255, 255, 0.05);
+            --border-active: rgba(255, 255, 255, 0.1);
+            --text-main: #ffffff;
+            --text-dim: #a1a1aa;
         }
 
-        * { 
-            box-sizing: border-box; 
-            margin: 0; 
-            padding: 0; 
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
         }
 
         body {
-            background-color: var(--bg-black);
-            color: #eee;
+            background-color: var(--bg-deep);
+            color: var(--text-main);
             font-family: 'Inter', sans-serif;
-            line-height: 1.5;
-            padding: 20px;
+            line-height: 1.6;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
         }
 
-        /* --- Main Layout --- */
-        .wrapper {
-            max-width: 900px;
-            margin: 40px auto;
-            border-left: 1px solid var(--border);
-            border-right: 1px solid var(--border);
-            min-height: calc(100vh - 80px);
+        /* Background Effects (Inspired by ysn.lol energy-rays) */
+        .bg-glow {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 100vh;
+            background: 
+                radial-gradient(circle at 20% 12%, rgba(197, 160, 89, 0.05), transparent 38%),
+                radial-gradient(circle at 80% 4%, rgba(0, 255, 204, 0.04), transparent 34%);
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* --- Navigation --- */
+        nav {
+            position: fixed;
+            top: 24px;
+            left: 0;
+            right: 0;
+            z-index: 100;
             display: flex;
-            flex-direction: column;
+            justify-content: center;
+            padding: 0 16px;
         }
 
-        /* --- Header Section --- */
-        header {
-            padding: 40px;
-            border-bottom: 1px solid var(--border);
-        }
-
-        .studio-logo {
-            font-family: 'Cinzel', serif;
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            color: var(--gold);
-            text-transform: uppercase;
-            font-weight: 700;
-            margin-bottom: 8px;
-        }
-
-        .studio-description {
-            font-size: 0.8rem;
-            color: var(--text-dim);
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-
-        /* --- Content Grid --- */
-        .content {
-            flex-grow: 1;
-        }
-
-        .project-row {
-            display: grid;
-            grid-template-columns: 1fr 180px;
-            padding: 40px;
-            border-bottom: 1px solid var(--border);
-            transition: background 0.2s ease;
-            text-decoration: none;
-            color: inherit;
-        }
-
-        .project-row:hover {
-            background: rgba(255, 255, 255, 0.02);
-        }
-
-        .project-info h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.4rem;
-            margin-bottom: 10px;
-            color: #fff;
-        }
-
-        .project-info p {
-            font-size: 0.9rem;
-            color: var(--text-dim);
-            max-width: 500px;
-        }
-
-        .project-action {
+        .nav-container {
+            width: 100%;
+            max-width: 1000px;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border-subtle);
+            border-radius: 999px;
+            padding: 12px 24px;
             display: flex;
             align-items: center;
-            justify-content: flex-end;
-            font-size: 0.7rem;
-            text-transform: uppercase;
+            justify-content: space-between;
+        }
+
+        .brand {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.1rem;
             letter-spacing: 2px;
-            color: var(--gold);
-            font-weight: 900;
-        }
-
-        /* --- Footer Section --- */
-        footer {
-            padding: 40px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 20px;
-        }
-
-        .footer-link {
             text-decoration: none;
+            color: var(--text-main);
+        }
+
+        .brand span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .nav-links a {
             color: var(--text-dim);
-            font-size: 0.75rem;
+            text-decoration: none;
+            font-size: 0.8rem;
+            font-weight: 500;
             text-transform: uppercase;
             letter-spacing: 1px;
             transition: color 0.2s;
         }
 
-        .footer-link:hover {
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 180px 24px 80px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 8vw, 4rem);
+            margin-bottom: 16px;
+            letter-spacing: -1px;
+            background: linear-gradient(to right, #fff, #a1a1aa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-dim);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        /* --- Project Grid --- */
+        .main-content {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 24px 100px;
+        }
+
+        .grid-header {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            color: var(--gold);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .grid-header::after {
+            content: "";
+            height: 1px;
+            flex-grow: 1;
+            background: var(--border-subtle);
+        }
+
+        .project-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .project-item {
+            background: var(--glass);
+            border: 1px solid var(--border-subtle);
+            border-radius: 24px;
+            padding: 32px;
+            text-decoration: none;
+            color: inherit;
+            display: grid;
+            grid-template-columns: 1fr auto;
+            align-items: center;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item:hover {
+            border-color: var(--border-active);
+            transform: translateY(-4px);
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .project-item::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            background: var(--gold);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .project-item:hover::before {
+            opacity: 1;
+        }
+
+        .project-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--text-main);
+            margin-bottom: 8px;
+        }
+
+        .project-description {
+            color: var(--text-dim);
+            font-size: 0.95rem;
+            max-width: 600px;
+        }
+
+        .project-link-icon {
+            color: var(--text-dim);
+            transition: transform 0.3s, color 0.3s;
+        }
+
+        .project-item:hover .project-link-icon {
+            transform: translateX(5px);
+            color: var(--gold);
+        }
+
+        /* --- Footer --- */
+        footer {
+            border-top: 1px solid var(--border-subtle);
+            padding: 60px 24px;
+            text-align: center;
+        }
+
+        .footer-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .footer-col h4 {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-col a {
+            display: block;
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.9rem;
+            margin-bottom: 12px;
+            transition: color 0.2s;
+        }
+
+        .footer-col a:hover {
             color: var(--qi-cyan);
         }
 
         .copyright {
-            grid-column: 1 / -1;
-            margin-top: 40px;
-            font-size: 0.65rem;
-            color: #222;
+            font-size: 0.75rem;
+            color: #333;
             text-transform: uppercase;
             letter-spacing: 2px;
         }
 
-        @media (max-width: 600px) {
-            .wrapper { border: none; margin: 0; }
-            .project-row { grid-template-columns: 1fr; gap: 20px; }
-            .project-action { justify-content: flex-start; }
-            header, .project-row, footer { padding: 30px 20px; }
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-container { padding: 10px 20px; }
+            .nav-links { display: none; }
+            .project-item { grid-template-columns: 1fr; gap: 20px; border-radius: 16px; }
+            .hero { padding-top: 140px; }
         }
     </style>
 </head>
 <body>
 
-    <div class="wrapper">
-        <header>
-            <div class="studio-logo">Thana Studios</div>
-            <div class="studio-description">Independent Game Development // Digital Alchemy</div>
-        </header>
+    <div class="bg-glow"></div>
 
-        <main class="content">
-            <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="project-row">
+    <nav>
+        <div class="nav-container">
+            <a href="/" class="brand">THANA <span>STUDIOS</span></a>
+            <div class="nav-links">
+                <a href="https://github.com/thana-studios" target="_blank">Repository</a>
+                <a href="https://discord.gg/35eeBFeDVZ" target="_blank">Nexus</a>
+                <a href="mailto:thanastudios@outlook.com">Comm-Link</a>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero">
+        <h1>Digital Alchemy</h1>
+        <p>Crafting immersive browser-based experiences through cultivation and code.</p>
+    </section>
+
+    <main class="main-content">
+        <div class="grid-header">Active Manifestations</div>
+        
+        <div class="project-list">
+            <a href="https://thana-studios.github.io/Soul-Awakening-First-Breath/" class="project-item">
                 <div class="project-info">
-                    <h2>Soul Awakening: First Breath</h2>
-                    <p>Navigate the path of immortality. A browser based cultivation journey through the celestial realms.</p>
+                    <h2 class="project-title">Soul Awakening: First Breath</h2>
+                    <p class="project-description">An expansive cultivation journey. Master your Qi, navigate celestial trials, and begin your ascent to immortality.</p>
                 </div>
-                <div class="project-action">
-                    [ Initialize ]
+                <div class="project-link-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
                 </div>
             </a>
 
-            <div class="project-row" style="opacity: 0.5; cursor: default;">
+            <div class="project-item" style="opacity: 0.4; cursor: default;">
                 <div class="project-info">
-                    <h2>Void_Project</h2>
-                    <p>Forming within the digital void. Access currently restricted.</p>
+                    <h2 class="project-title" style="color: #666;">VOID_PROJECT</h2>
+                    <p class="project-description">The digital void is coalescing. Access to the next manifestation is currently restricted.</p>
                 </div>
-                <div class="project-action" style="color: #333;">
-                    [ Locked ]
+                <div class="project-link-icon" style="color: #222;">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
                 </div>
             </div>
-        </main>
+        </div>
+    </main>
 
-        <footer>
-            <a href="https://github.com/thana-studios" class="footer-link" target="_blank">GitHub</a>
-            <a href="https://discord.gg/35eeBFeDVZ" class="footer-link" target="_blank">Discord</a>
-            <a href="mailto:thanastudios@outlook.com" class="footer-link">Contact</a>
-            
-            <div class="copyright">
-                &copy; 2026 Thana Studios // All Systems Operational
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>Network</h4>
+                <a href="https://github.com/thana-studios" target="_blank">GitHub</a>
+                <a href="https://discord.gg/35eeBFeDVZ" target="_blank">Discord</a>
             </div>
-        </footer>
-    </div>
+            <div class="footer-col">
+                <h4>Connect</h4>
+                <a href="mailto:thanastudios@outlook.com">Support</a>
+                <a href="#">Announcements</a>
+            </div>
+            <div class="footer-col">
+                <h4>System</h4>
+                <a href="#" style="cursor: default;">Status: Online</a>
+                <a href="#" style="cursor: default;">Version 1.0.4</a>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2026 Thana Studios // All Systems Synchronized
+        </div>
+    </footer>
 
 </body>
 </html>
